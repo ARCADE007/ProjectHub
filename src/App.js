@@ -1,5 +1,9 @@
+import Topbar from "./topbar/Topbar";
+
 function App() {
-  return <div className="App">MyPortfolio</div>;
+  return(
+    <Topbar/>
+  );
 }
 
 export default App;
