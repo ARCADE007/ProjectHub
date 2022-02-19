@@ -1,8 +1,11 @@
 import Topbar from "./topbar/Topbar";
-
+import { CssBaseline } from "@mui/material";
 function App() {
-  return(
-    <Topbar/>
+  return (
+    <div style={{ backgroundColor: "green" }}>
+      <CssBaseline />
+      <Topbar />
+    </div>
   );
 }
 
