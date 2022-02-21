@@ -1,6 +1,7 @@
 import Topbar from "./topbar/Topbar";
 import { CssBaseline } from "@mui/material";
 import Intro from "./Intro/Intro";
+import FeaturedProject from "./featuredProject/FeaturedProject";
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <CssBaseline />
       <Topbar />
       <Intro/>
+      <FeaturedProject/>
     </div>
   );
 }
