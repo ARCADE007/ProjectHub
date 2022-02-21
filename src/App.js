@@ -1,11 +1,14 @@
 import Topbar from "./topbar/Topbar";
 import { CssBaseline } from "@mui/material";
-import {COLORS} from "./Values/Colors";
+import Intro from "./Intro/Intro";
+
+
 function App() {
   return (
-    <div style={{ backgroundColor: COLORS.black }}>
+    <div >
       <CssBaseline />
       <Topbar />
+      <Intro/>
     </div>
   );
 }

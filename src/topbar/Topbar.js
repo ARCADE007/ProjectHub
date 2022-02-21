@@ -11,10 +11,11 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import {COLORS } from "../Values/Colors";
 import "./topbar.module.css";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["About Me", "Projects", "Contact"];
+const settings = ["Profile", "Add Project", "Logout"];
 
 const Topbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -37,11 +38,12 @@ const Topbar = () => {
 
   return (
     <AppBar
+    style={{backgroundColor:COLORS.primary1}}
       sx={{
         bgcolor: "transparent",
         boxShadow: "none",
       }}
-      position="static"
+      position="fixed"
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -49,7 +51,7 @@ const Topbar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            sx={{ mr: 2, display: { xs: "none", md: "flex" },fontWeight:"bold" }}
           >
             Priya Kaushik
           </Typography>
@@ -98,12 +100,12 @@ const Topbar = () => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } ,ml:"auto"}}>
+          <Box sx={{ display: { xs: "none", md: "flex" } ,ml:"auto"}}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, color: "white", display: "block",fontWeight:"bold",m:"5px" }}
               >
                 {page}
               </Button>
