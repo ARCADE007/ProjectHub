@@ -1,18 +1,17 @@
 import React from "react";
-import Project from "../project/Project";
-import styles from "./featuredproject.module.css";
 import { COLORS } from "../Values/Colors";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+import Achievements from "../achievements/Achievements";
+import styles from "../achievementSection/achievementSection.css";
 
-function FeaturedProject() {
+function AchievementSection() {
   return (
     <div
       style={{
         backgroundColor: COLORS.primary1,
         paddingTop: "5vh",
       }}
-      className={styles.pProjectSection}
     >
       <div
         style={{
@@ -20,25 +19,26 @@ function FeaturedProject() {
         }}
       >
         <h1
+          className={styles.pHeading}
           style={{
             fontSize: "3vw",
             color: COLORS.white,
             borderBottom: "5px solid",
             borderColor: COLORS.primary2,
-            width: "28vw",
+            width: "auto",
+            maxWidth: "37%",
             marginLeft: "auto",
             marginRight: "auto",
           }}
-          className={styles.pHeading}
         >
-          Featured Projects
+          Honor & Achievements
         </h1>
       </div>
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Grid container spacing={2}>
-          {[1, 1, 1, 1, 1, 1].map((e) => (
-            <Grid item xs={12} md={6} lg={6} xl={4}>
-              <Project />
+          {[1, 1].map((e) => (
+            <Grid item xs={12} md={12} lg={12} xl={12}>
+              <Achievements />
             </Grid>
           ))}
         </Grid>
@@ -47,4 +47,4 @@ function FeaturedProject() {
   );
 }
 
-export default FeaturedProject;
+export default AchievementSection;

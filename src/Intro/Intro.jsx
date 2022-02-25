@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./intro.module.css";
-import profileImage from "../../src/image/mark.jpeg";
+import profileImage from "../../src/image/mark.png";
 import { COLORS } from "../Values/Colors";
 
 const Intro = () => {

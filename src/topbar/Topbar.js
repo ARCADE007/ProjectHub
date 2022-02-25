@@ -11,8 +11,9 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import {COLORS } from "../Values/Colors";
+import { COLORS } from "../Values/Colors";
 import "./topbar.module.css";
+import profileImage from "../image/mark.png";
 
 const pages = ["About Me", "Projects", "Contact"];
 const settings = ["Profile", "Add Project", "Logout"];
@@ -38,10 +39,10 @@ const Topbar = () => {
 
   return (
     <AppBar
-    style={{backgroundColor:COLORS.primary1}}
+      style={{ backgroundColor: COLORS.primary1 }}
       sx={{
         bgcolor: "transparent",
-        boxShadow: "none",
+        boxShadow: "-moz-initial",
       }}
       position="fixed"
     >
@@ -51,7 +52,11 @@ const Topbar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" },fontWeight:"bold" }}
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontWeight: "bold",
+            }}
           >
             Priya Kaushik
           </Typography>
@@ -100,12 +105,18 @@ const Topbar = () => {
           >
             LOGO
           </Typography>
-          <Box sx={{ display: { xs: "none", md: "flex" } ,ml:"auto"}}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, ml: "auto" }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block",fontWeight:"bold",m:"5px" }}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontWeight: "bold",
+                  m: "5px",
+                }}
               >
                 {page}
               </Button>
@@ -115,7 +126,7 @@ const Topbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar src={profileImage} />
               </IconButton>
             </Tooltip>
             <Menu
