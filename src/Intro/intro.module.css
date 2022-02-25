@@ -1,6 +1,6 @@
-:root {
+/* :root {
   --accent: #1e90ff;
-}
+} */
 
 .i {
   display: flex;
@@ -80,7 +80,6 @@
 
 .imgWrapper {
   overflow: hidden;
-  border-radius: 100%;
 }
 
 .iImg {
@@ -89,8 +88,6 @@
   height: 100%;
   object-fit: contain;
   position: absolute;
-  border-radius: 100%;
-  
 }
 
 .iBg {
@@ -115,6 +112,23 @@
     text-align: center;
     height: 100%;
   }
+  .iIntro {
+    font-size: 10px;
+    font-weight: 300;
+  }
+  .iTitleItem {
+    height: 20px;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  .iScroll {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    bottom: 5%;
+  }
   .iImg {
     padding: 5%;
     width: 100%;
@@ -123,7 +137,7 @@
     position: absolute;
   }
 
-  .iDesc {
-    display: none;
+  .iName {
+    font-size: 30px;
   }
 }
