@@ -18,6 +18,7 @@ export default function Achievements() {
         marginLeft: "auto",
         marginRight: "auto",
         objectFit: "cover",
+    
         // boxShadow: "3px 3px 3px " + COLORS.primary2,
         boxShadow: "-moz-initial",
       }}
@@ -30,7 +31,7 @@ export default function Achievements() {
       >
         <CardMedia
           sx={{
-            aspectRatio: "13/12",
+            aspectRatio: "8/5",
             objectFit: "fill",
           }}
           component="img"
