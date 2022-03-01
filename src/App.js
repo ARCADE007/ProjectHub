@@ -3,6 +3,7 @@ import { CssBaseline } from "@mui/material";
 import Intro from "./Intro/Intro";
 import FeaturedProject from "./featuredProject/FeaturedProject";
 import AchievementSection from "./achievementSection/AchievementSection";
+import Footer from "./footer/Footer";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Intro />
       <FeaturedProject />
       <AchievementSection />
+      <Footer/>
     </div>
   );
 }
