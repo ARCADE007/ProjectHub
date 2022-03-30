@@ -12,7 +12,7 @@ export default function Project() {
   return (
     <Card
       sx={{
-        borderRadius: "20px",
+        // borderRadius: "20px",
         marginTop: "10px",
         marginBottom: "10px",
         marginLeft: "auto",
@@ -20,7 +20,7 @@ export default function Project() {
         objectFit: "cover",
         maxWidth: "80vw",
 
-        boxShadow: "2px 2px 2px" + COLORS.primary2,
+        // boxShadow: "2px 2px " + COLORS.primary2,
       }}
     >
       <CardActionArea>

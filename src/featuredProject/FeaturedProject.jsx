@@ -37,7 +37,7 @@ function FeaturedProject() {
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           {[1, 1, 1, 1, 1, 1].map((e) => (
-            <Grid item xs={12} md={6} lg={6} xl={4}>
+            <Grid item xs={12} md={6} lg={6} xl={3}>
               <Project />
             </Grid>
           ))}
