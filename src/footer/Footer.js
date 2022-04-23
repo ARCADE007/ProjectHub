@@ -16,7 +16,6 @@ function Footer() {
         backgroundColor: COLORS.black,
 
         padding: "5vh",
-        marginTop: "5vh",
       }}
     >
       <Container maxWidth="xl">
