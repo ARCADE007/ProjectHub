@@ -1,6 +1,6 @@
 import React from "react";
 import Project from "../project/Project";
-import styles from "./featuredproject.module.css";
+// import styles from "./featuredproject.module.css";
 import { COLORS } from "../Values/Colors";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -12,7 +12,7 @@ function FeaturedProject() {
         backgroundColor: COLORS.primary1,
         paddingTop: "5vh",
       }}
-      className={styles.pProjectSection}
+      // className={styles.pProjectSection}
     >
       <div
         style={{
@@ -29,7 +29,7 @@ function FeaturedProject() {
             marginLeft: "auto",
             marginRight: "auto",
           }}
-          className={styles.pHeading}
+          // className={styles.pHeading}
         >
           Featured Projects
         </h1>
