@@ -14,7 +14,7 @@ function OpenProject() {
       <div
         style={{
           backgroundColor: COLORS.primary1,
-          paddingTop: "10 vh",
+          paddingTop: "10vh",
           paddingBottom: "20px",
         }}
         // className={styles.pProjectSection}
