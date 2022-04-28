@@ -4,6 +4,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Profile from "./ProfilePage/Profile";
 import ProjectDetails from "./projectDetails/ProjectDetails";
+import UserProfile from "./forms/UserProfile";
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         </Route>
         <Route path="/ProjectDetails">
           <ProjectDetails />
+        </Route>
+        <Route path="/UserProfile">
+          <UserProfile />
         </Route>
         <Route path="/">
           <OpenProject />
