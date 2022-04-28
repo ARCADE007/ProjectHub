@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Profile from "./ProfilePage/Profile";
 import ProjectDetails from "./projectDetails/ProjectDetails";
 import UserProfile from "./forms/UserProfile";
+import Login from "./forms/Login";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/UserProfile">
           <UserProfile />
+        </Route>
+        <Route path="/Login">
+          <Login />
         </Route>
         <Route path="/">
           <OpenProject />
