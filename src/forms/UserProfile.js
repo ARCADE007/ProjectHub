@@ -12,24 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Footer from "../footer/Footer";
 
 export default function UserProfile() {
   const handleSubmit = (event) => {
@@ -60,7 +43,7 @@ export default function UserProfile() {
               color: COLORS.white,
               borderBottom: "5px solid",
               borderColor: COLORS.primary2,
-              width: "14vw",
+              width: "15vw",
               marginLeft: "auto",
               marginRight: "auto",
             }}
@@ -103,6 +86,11 @@ export default function UserProfile() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -113,6 +101,11 @@ export default function UserProfile() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -123,6 +116,11 @@ export default function UserProfile() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -134,6 +132,11 @@ export default function UserProfile() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -162,8 +165,14 @@ export default function UserProfile() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
+      <div
+        style={{
+          marginTop: "50px",
+        }}
+      >
+        <Footer />
+      </div>
     </div>
   );
 }
