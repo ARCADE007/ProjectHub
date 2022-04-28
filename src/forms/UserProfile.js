@@ -9,21 +9,12 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
 import Footer from "../footer/Footer";
+import { InputAdornment } from "@mui/material";
 
 export default function UserProfile() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
-
   return (
     <div
       style={{
@@ -70,12 +61,7 @@ export default function UserProfile() {
             <LockOutlinedIcon />
           </Avatar>
 
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -108,6 +94,70 @@ export default function UserProfile() {
                   }}
                 />
               </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="skill1"
+                  required
+                  fullWidth
+                  id="skill1"
+                  label="Skill 1"
+                  autoFocus
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="skill2"
+                  required
+                  fullWidth
+                  id="skill2"
+                  label="Skill 2"
+                  autoFocus
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="skill3"
+                  required
+                  fullWidth
+                  id="skill3"
+                  label="Skill 3"
+                  autoFocus
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="skill4"
+                  required
+                  fullWidth
+                  id="skill4"
+                  label="Skill 4"
+                  autoFocus
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -117,28 +167,18 @@ export default function UserProfile() {
                   name="email"
                   autoComplete="email"
                   InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <p style={{ color: COLORS.white }}> jklu.edu.in </p>
+                      </InputAdornment>
+                    ),
                     style: {
                       color: COLORS.white,
                     },
                   }}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  InputProps={{
-                    style: {
-                      color: COLORS.white,
-                    },
-                  }}
-                />
-              </Grid>
+
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
