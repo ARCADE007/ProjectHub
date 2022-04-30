@@ -6,6 +6,8 @@ import Profile from "./ProfilePage/Profile";
 import ProjectDetails from "./projectDetails/ProjectDetails";
 import UserProfile from "./forms/UserProfile";
 import Login from "./forms/Login";
+import Register from "./forms/Register";
+import AddPost from "./forms/AddPost";
 
 function App() {
   return (
@@ -20,8 +22,14 @@ function App() {
         <Route path="/UserProfile">
           <UserProfile />
         </Route>
+        <Route path="/AddPost">
+          <AddPost />
+        </Route>
         <Route path="/Login">
           <Login />
+        </Route>
+        <Route path="/Register">
+          <Register />
         </Route>
         <Route path="/">
           <OpenProject />
