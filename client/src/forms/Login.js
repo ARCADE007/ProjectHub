@@ -8,7 +8,6 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
 import { InputAdornment } from "@mui/material";
@@ -16,8 +15,32 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import loginImage from "../image/loginImage.svg";
+import { styled } from "@mui/material/styles";
 
 export default function Login() {
+  const CssTextField = styled(TextField)({
+    "& label.Mui-focused": {
+      color: COLORS.primary2,
+    },
+    "& 	.MuiInputLabel-root": {
+      color: COLORS.white,
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: COLORS.primary2,
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: COLORS.white,
+      },
+      "&:hover fieldset": {
+        borderColor: COLORS.primary2,
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: COLORS.primary2,
+      },
+    },
+  });
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -50,14 +73,14 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        background: COLORS.primary1,
+        height: "100vh",
+      }}
+    >
       <CssBaseline />
-      <div
-        style={{
-          background: COLORS.primary1,
-          paddingBottom: "9vh",
-        }}
-      >
+      <div>
         <Container component="main" maxWidth="xs">
           <div
             style={{
@@ -66,11 +89,11 @@ export default function Login() {
           >
             <h1
               style={{
-                fontSize: "2vw",
+                fontSize: "40px",
                 color: COLORS.white,
                 borderBottom: "5px solid",
                 borderColor: COLORS.primary2,
-                width: "6vw",
+                width: "115px",
                 marginLeft: "auto",
                 marginRight: "auto",
               }}
@@ -87,27 +110,16 @@ export default function Login() {
             }}
           >
             <Avatar
-              variant="sqaure"
               sx={{
-                width: "300px",
-                height: "300px",
+                width: "20vh",
+                height: "20vh",
                 marginLeft: "auto",
                 marginRight: "auto",
+                borderRadius: "0",
+                marginBottom: "30px",
               }}
               src={loginImage}
             />
-
-            <Avatar
-              sx={{
-                width: "300px",
-                height: "300px",
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-              variant="sqaure"
-            >
-              h
-            </Avatar>
 
             <Box
               component="form"
@@ -117,7 +129,7 @@ export default function Login() {
             >
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <TextField
+                  <CssTextField
                     required
                     fullWidth
                     id="email"
@@ -127,7 +139,7 @@ export default function Login() {
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
-                          <p style={{ color: COLORS.white }}> jklu.edu.in </p>
+                          <p style={{ color: COLORS.white }}> @jklu.edu.in </p>
                         </InputAdornment>
                       ),
                       style: {
@@ -137,14 +149,14 @@ export default function Login() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <CssTextField
                     required
                     fullWidth
                     name="password"
                     label="Password"
-                    type={values.showPassword ? "text" : "password"}
-                    value={values.password}
-                    onChange={handleChange("password")}
+                    // type={values.showPassword ? "text" : "password"}
+                    // value={values.password}
+                    // onChange={handleChange("password")}
                     id="password"
                     autoComplete="new-password"
                     InputProps={{
@@ -155,6 +167,7 @@ export default function Login() {
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
+                            sx={{ color: "white" }}
                           >
                             {values.showPassword ? (
                               <VisibilityOff />
@@ -171,14 +184,6 @@ export default function Login() {
                     }}
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid>
               </Grid>
               <Button
                 type="submit"
@@ -186,12 +191,12 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+                Sign In
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link href="#" variant="body2">
-                    Already have an account? Sign in
+                    Dont have an account? Register
                   </Link>
                 </Grid>
               </Grid>

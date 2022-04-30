@@ -13,8 +13,67 @@ import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
 import Footer from "../footer/Footer";
 import { InputAdornment } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
+import loginImage from "../image/loginImage.svg";
+import { styled } from "@mui/material/styles";
 
 export default function UserProfile() {
+  const CssTextField = styled(TextField)({
+    "& label.Mui-focused": {
+      color: COLORS.primary2,
+    },
+    "& 	.MuiInputLabel-root": {
+      color: COLORS.white,
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: COLORS.primary2,
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: COLORS.white,
+      },
+      "&:hover fieldset": {
+        borderColor: COLORS.primary2,
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: COLORS.primary2,
+      },
+    },
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+  };
+
+  const [values, setValues] = React.useState({
+    amount: "",
+    password: "",
+    weight: "",
+    weightRange: "",
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div
       style={{
@@ -34,12 +93,12 @@ export default function UserProfile() {
               color: COLORS.white,
               borderBottom: "5px solid",
               borderColor: COLORS.primary2,
-              width: "15vw",
+              width: "7vw",
               marginLeft: "auto",
               marginRight: "auto",
             }}
           >
-            Project Name
+            Profile
           </h1>
         </div>
         <Box
@@ -64,7 +123,7 @@ export default function UserProfile() {
           <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <CssTextField
                   autoComplete="given-name"
                   name="firstName"
                   required
@@ -75,12 +134,13 @@ export default function UserProfile() {
                   InputProps={{
                     style: {
                       color: COLORS.white,
+                      outlineColor: "white",
                     },
                   }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <CssTextField
                   required
                   fullWidth
                   id="lastName"
@@ -95,7 +155,7 @@ export default function UserProfile() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <CssTextField
                   autoComplete="given-name"
                   name="skill1"
                   required
@@ -111,7 +171,7 @@ export default function UserProfile() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <CssTextField
                   autoComplete="given-name"
                   name="skill2"
                   required
@@ -127,7 +187,7 @@ export default function UserProfile() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <CssTextField
                   autoComplete="given-name"
                   name="skill3"
                   required
@@ -143,7 +203,7 @@ export default function UserProfile() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <CssTextField
                   autoComplete="given-name"
                   name="skill4"
                   required
@@ -159,12 +219,13 @@ export default function UserProfile() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <CssTextField
                   required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
+                  autoFocus
                   autoComplete="email"
                   InputProps={{
                     endAdornment: (
@@ -178,13 +239,56 @@ export default function UserProfile() {
                   }}
                 />
               </Grid>
-
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                <CssTextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  // type={values.showPassword ? "text" : "password"}
+                  // value={values.password}
+                  // onChange={handleChange("password")}
+                  autoFocus
+                  id="password"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                          sx={{ color: "white" }}
+                        >
+                          {values.showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <CssTextField
+                  required
+                  fullWidth
+                  id="aboutyou"
+                  label="About You"
+                  name="aboutyou"
+                  multiline
+                  rows={6}
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
                 />
               </Grid>
             </Grid>
@@ -194,15 +298,8 @@ export default function UserProfile() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Update
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
