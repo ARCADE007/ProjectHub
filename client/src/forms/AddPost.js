@@ -56,22 +56,19 @@ export default function AddPost() {
             paddingTop: "10vh",
           }}
         >
-          <Grid item xs={12}>
-            <h1
-              style={{
-                fontSize: "40px",
-                color: COLORS.white,
-                borderBottom: "5px solid",
-                borderColor: COLORS.primary2,
-                width: "100%",
-                marginLeft: "auto",
-                marginRight: "auto",
-                display: "inline",
-              }}
-            >
-              Create Project
-            </h1>
-          </Grid>
+          <h1
+            style={{
+              fontSize: "40px",
+              color: COLORS.white,
+              borderBottom: "5px solid",
+              borderColor: COLORS.primary2,
+              width: "300px",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            Create Project
+          </h1>
         </div>
         <Box
           sx={{
@@ -81,16 +78,21 @@ export default function AddPost() {
             alignItems: "center",
           }}
         >
-          <Container maxWidth="sm">
-            <Grid item xs={12}>
+          <Container sx={{ padding: "0", margin: "0" }} maxWidth="lg">
+            <Grid
+              sx={{ alignItems: "center", justifyContent: "center" }}
+              item
+              xs={12}
+            >
               <Avatar
                 variant="square"
                 sx={{
                   m: 1,
-                  bgcolor: "secondary.main",
+                  bgcolor: COLORS.primary2,
                   height: "20vh",
                   width: "95%",
-                  borderRadius: "0",
+
+                  borderRadius: "5px",
                 }}
               >
                 <LockOutlinedIcon />
@@ -133,12 +135,28 @@ export default function AddPost() {
                   }}
                 />
               </Grid>
+              <Grid item xs={12}>
+                <CssTextField
+                  name="githubLink"
+                  required
+                  fullWidth
+                  id="githubLink"
+                  label="Github Link"
+                  autoFocus
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                      outlineColor: "white",
+                    },
+                  }}
+                />
+              </Grid>
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, background: COLORS.primary2 }}
             >
               Publish
             </Button>

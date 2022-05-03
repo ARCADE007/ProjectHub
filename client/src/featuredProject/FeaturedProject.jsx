@@ -21,11 +21,11 @@ function FeaturedProject() {
       >
         <h1
           style={{
-            fontSize: "3vw",
+            fontSize: "30px",
             color: COLORS.white,
             borderBottom: "5px solid",
             borderColor: COLORS.primary2,
-            width: "28vw",
+            width: "275px",
             marginLeft: "auto",
             marginRight: "auto",
           }}

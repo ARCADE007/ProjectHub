@@ -80,7 +80,7 @@ export default function UserProfile() {
         background: COLORS.primary1,
       }}
     >
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <div
           style={{
@@ -89,11 +89,11 @@ export default function UserProfile() {
         >
           <h1
             style={{
-              fontSize: "2vw",
+              fontSize: "40px",
               color: COLORS.white,
               borderBottom: "5px solid",
               borderColor: COLORS.primary2,
-              width: "7vw",
+              width: "135px",
               marginLeft: "auto",
               marginRight: "auto",
             }}
@@ -112,7 +112,7 @@ export default function UserProfile() {
           <Avatar
             sx={{
               m: 1,
-              bgcolor: "secondary.main",
+              bgcolor: COLORS.primary2,
               height: "200px",
               width: "200px",
             }}
@@ -239,6 +239,23 @@ export default function UserProfile() {
                   }}
                 />
               </Grid>
+
+              <Grid item xs={12}>
+                <CssTextField
+                  required
+                  fullWidth
+                  id="aboutyou"
+                  label="About You"
+                  name="aboutyou"
+                  multiline
+                  rows={6}
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
               <Grid item xs={12}>
                 <CssTextField
                   required
@@ -275,28 +292,12 @@ export default function UserProfile() {
                   }}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <CssTextField
-                  required
-                  fullWidth
-                  id="aboutyou"
-                  label="About You"
-                  name="aboutyou"
-                  multiline
-                  rows={6}
-                  InputProps={{
-                    style: {
-                      color: COLORS.white,
-                    },
-                  }}
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, background: COLORS.primary2 }}
             >
               Update
             </Button>

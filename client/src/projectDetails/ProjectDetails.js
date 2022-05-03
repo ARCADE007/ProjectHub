@@ -28,11 +28,11 @@ function ProjectDetails() {
           >
             <h1
               style={{
-                fontSize: "2vw",
+                fontSize: "40px",
                 color: COLORS.white,
                 borderBottom: "5px solid",
                 borderColor: COLORS.primary2,
-                width: "14vw",
+                width: "280px",
                 marginLeft: "auto",
                 marginRight: "auto",
               }}
@@ -70,18 +70,26 @@ function ProjectDetails() {
             >
               <Grid textAlign="center" item xs={6}>
                 <Button
-                  sx={{ height: "50px", width: "120px" }}
+                  sx={{
+                    height: "50px",
+                    width: "120px",
+                    background: COLORS.primary2,
+                  }}
                   variant="contained"
                 >
-                  Contained
+                  View Profile
                 </Button>
               </Grid>
               <Grid textAlign="center" item xs={6}>
                 <Button
-                  sx={{ height: "50px", width: "120px" }}
+                  sx={{
+                    height: "50px",
+                    width: "120px",
+                    background: COLORS.primary2,
+                  }}
                   variant="contained"
                 >
-                  Contained
+                  Github
                 </Button>
               </Grid>
             </Grid>
