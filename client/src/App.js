@@ -8,11 +8,19 @@ import UserProfile from "./forms/UserProfile";
 import Login from "./forms/Login";
 import Register from "./forms/Register";
 import AddPost from "./forms/AddPost";
+import AddTechIcon from "./forms/AddTechIcon";
+import AddHonor from "./forms/AddHonor";
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/AddHonor">
+          <AddHonor />
+        </Route>
+        <Route path="/AddTechIcon">
+          <AddTechIcon />
+        </Route>
         <Route path="/Profile">
           <Profile />
         </Route>

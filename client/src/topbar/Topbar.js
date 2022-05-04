@@ -15,8 +15,14 @@ import { COLORS } from "../Values/Colors";
 import "./topbar.module.css";
 import profileImage from "../image/mark.png";
 
-const pages = ["About Me", "Projects", "Contact"];
-const settings = ["Profile", "Add Project", "Logout"];
+const pages = ["About Me", "Tech Stack", "Achievements", "Projects", "Contact"];
+const settings = [
+  "Profile",
+  "Add Project",
+  "Add Achievement",
+  "Add Tech",
+  "Logout",
+];
 
 const Topbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

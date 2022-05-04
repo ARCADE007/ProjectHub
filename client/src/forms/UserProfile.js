@@ -307,6 +307,10 @@ export default function UserProfile() {
       <div
         style={{
           marginTop: "50px",
+          position: "relative",
+          bottom: "0",
+          left: "0",
+          right: "0",
         }}
       >
         <Footer />

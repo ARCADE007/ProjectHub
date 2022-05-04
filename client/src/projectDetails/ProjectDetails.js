@@ -16,7 +16,7 @@ function ProjectDetails() {
       <div
         style={{
           background: COLORS.black,
-          minHeight: "50vh",
+
           paddingBottom: "5vh",
         }}
       >
@@ -112,7 +112,16 @@ function ProjectDetails() {
           alt="green iguana"
         />
       </div>
-      <Footer />
+      <div
+        style={{
+          position: "relative",
+          bottom: "0",
+          left: "0",
+          right: "0",
+        }}
+      >
+        <Footer />
+      </div>
     </div>
   );
 }
