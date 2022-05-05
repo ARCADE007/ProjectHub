@@ -17,7 +17,15 @@ function Profile() {
       <TechStack />
       <FeaturedProject />
       <AchievementSection />
-      <div style={{ marginTop: "15px" }}>
+      <div
+        style={{
+          marginTop: "50px",
+          position: "relative",
+          bottom: "0",
+          left: "0",
+          right: "0",
+        }}
+      >
         <Footer />
       </div>
     </div>

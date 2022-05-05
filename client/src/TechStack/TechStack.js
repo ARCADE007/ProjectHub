@@ -11,11 +11,11 @@ function TechStack() {
     >
       <h1
         style={{
-          fontSize: "3vw",
+          fontSize: "30px",
           color: COLORS.white,
           borderBottom: "5px solid",
           borderColor: COLORS.primary2,
-          width: "18vw",
+          width: "175px",
           marginLeft: "auto",
           marginRight: "auto",
         }}
