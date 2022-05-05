@@ -10,11 +10,15 @@ import Register from "./forms/Register";
 import AddPost from "./forms/AddPost";
 import AddTechIcon from "./forms/AddTechIcon";
 import AddHonor from "./forms/AddHonor";
+import AddLinks from "./forms/AddLinks";
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/AddLinks">
+          <AddLinks />
+        </Route>
         <Route path="/AddHonor">
           <AddHonor />
         </Route>
@@ -27,7 +31,7 @@ function App() {
         <Route path="/ProjectDetails">
           <ProjectDetails />
         </Route>
-        <Route path="/UserProfile">
+        <Route path="/AddProfile">
           <UserProfile />
         </Route>
         <Route path="/AddPost">

@@ -7,16 +7,18 @@ import CardMedia from "@mui/material/CardMedia";
 import projectImage from "../../src/image/projectImage.png";
 import { CssBaseline } from "@mui/material";
 import Footer from "../footer/Footer";
+import Topbar from "../topbar/Topbar";
 
 function ProjectDetails() {
   return (
     <div>
       <CssBaseline />
+      <Topbar />
 
       <div
         style={{
           background: COLORS.black,
-
+          marginTop: "20px",
           paddingBottom: "5vh",
         }}
       >
@@ -44,7 +46,7 @@ function ProjectDetails() {
             <p
               style={{
                 color: COLORS.white,
-                marginTop: "5vh",
+                marginTop: "10vh",
                 paddingRight: "5vw",
                 paddingLeft: "5vw",
               }}
@@ -57,7 +59,8 @@ function ProjectDetails() {
           </div>
           <div
             style={{
-              marginTop: "5vh",
+              marginTop: "10vh",
+              marginBottom: "5vh",
             }}
           >
             <Grid

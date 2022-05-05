@@ -18,6 +18,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import loginImage from "../image/loginImage.svg";
 import { styled } from "@mui/material/styles";
+import Topbar from "../topbar/Topbar";
 
 export default function AddPost() {
   const CssTextField = styled(TextField)({
@@ -51,6 +52,7 @@ export default function AddPost() {
     >
       <Container component="main" maxWidth="sm">
         <CssBaseline />
+        <Topbar />
         <div
           style={{
             paddingTop: "10vh",

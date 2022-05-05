@@ -14,7 +14,7 @@ import { InputAdornment } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Topbar from "../topbar/Topbar";
 
-export default function AddHonor() {
+export default function AddLinks() {
   const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
       color: COLORS.primary2,
@@ -54,16 +54,16 @@ export default function AddHonor() {
         >
           <h1
             style={{
-              fontSize: "30px",
+              fontSize: "40px",
               color: COLORS.white,
               borderBottom: "5px solid",
               borderColor: COLORS.primary2,
-              width: "360px",
+              width: "250px",
               marginLeft: "auto",
               marginRight: "auto",
             }}
           >
-            Honor & Achievements
+            Social Links
           </h1>
         </div>
         <Box
@@ -74,28 +74,6 @@ export default function AddHonor() {
             alignItems: "center",
           }}
         >
-          <Container sx={{ padding: "0", margin: "0" }} maxWidth="lg">
-            <Grid
-              sx={{ alignItems: "center", justifyContent: "center" }}
-              item
-              xs={12}
-            >
-              <Avatar
-                variant="square"
-                sx={{
-                  m: 1,
-                  bgcolor: COLORS.primary2,
-                  height: "20vh",
-                  width: "95%",
-
-                  borderRadius: "5px",
-                }}
-              >
-                <LockOutlinedIcon />
-              </Avatar>
-            </Grid>
-          </Container>
-
           <Box
             component="form"
             noValidate
@@ -106,11 +84,51 @@ export default function AddHonor() {
                 <CssTextField
                   required
                   fullWidth
-                  id="projectDescription"
-                  label="Project Description"
-                  name="projectDescription"
-                  multiline
-                  rows={6}
+                  id="instagram"
+                  label="Instagram Link"
+                  name="instagram"
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <CssTextField
+                  required
+                  fullWidth
+                  id="github"
+                  label="Github Link"
+                  name="github"
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <CssTextField
+                  required
+                  fullWidth
+                  id="mail"
+                  label="Mail Link"
+                  name="mail"
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <CssTextField
+                  required
+                  fullWidth
+                  id="linkdin"
+                  label="Linkdin"
+                  name="linkdin"
                   InputProps={{
                     style: {
                       color: COLORS.white,

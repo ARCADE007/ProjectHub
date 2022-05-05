@@ -7,6 +7,7 @@ import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
 import Footer from "../footer/Footer";
 import Button from "@mui/material/Button";
+import Topbar from "../topbar/Topbar";
 
 export default function AddTechIcon() {
   return (
@@ -17,6 +18,7 @@ export default function AddTechIcon() {
     >
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <Topbar />
         <div
           style={{
             paddingTop: "10vh",
