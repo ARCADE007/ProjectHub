@@ -246,9 +246,9 @@ export default function UserProfile() {
                 <CssTextField
                   required
                   fullWidth
-                  id="aboutyou"
+                  id="aboutYou"
                   label="About You"
-                  name="aboutyou"
+                  name="aboutYou"
                   multiline
                   rows={6}
                   InputProps={{
