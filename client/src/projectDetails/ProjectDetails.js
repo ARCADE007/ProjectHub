@@ -7,16 +7,18 @@ import CardMedia from "@mui/material/CardMedia";
 import projectImage from "../../src/image/projectImage.png";
 import { CssBaseline } from "@mui/material";
 import Footer from "../footer/Footer";
+import Topbar from "../topbar/Topbar";
 
 function ProjectDetails() {
   return (
     <div>
       <CssBaseline />
+      <Topbar />
 
       <div
         style={{
           background: COLORS.black,
-          minHeight: "50vh",
+          marginTop: "20px",
           paddingBottom: "5vh",
         }}
       >
@@ -28,11 +30,11 @@ function ProjectDetails() {
           >
             <h1
               style={{
-                fontSize: "2vw",
+                fontSize: "40px",
                 color: COLORS.white,
                 borderBottom: "5px solid",
                 borderColor: COLORS.primary2,
-                width: "14vw",
+                width: "280px",
                 marginLeft: "auto",
                 marginRight: "auto",
               }}
@@ -44,7 +46,7 @@ function ProjectDetails() {
             <p
               style={{
                 color: COLORS.white,
-                marginTop: "5vh",
+                marginTop: "10vh",
                 paddingRight: "5vw",
                 paddingLeft: "5vw",
               }}
@@ -57,7 +59,8 @@ function ProjectDetails() {
           </div>
           <div
             style={{
-              marginTop: "5vh",
+              marginTop: "10vh",
+              marginBottom: "5vh",
             }}
           >
             <Grid
@@ -70,18 +73,26 @@ function ProjectDetails() {
             >
               <Grid textAlign="center" item xs={6}>
                 <Button
-                  sx={{ height: "50px", width: "120px" }}
+                  sx={{
+                    height: "50px",
+                    width: "120px",
+                    background: COLORS.primary2,
+                  }}
                   variant="contained"
                 >
-                  Contained
+                  View Profile
                 </Button>
               </Grid>
               <Grid textAlign="center" item xs={6}>
                 <Button
-                  sx={{ height: "50px", width: "120px" }}
+                  sx={{
+                    height: "50px",
+                    width: "120px",
+                    background: COLORS.primary2,
+                  }}
                   variant="contained"
                 >
-                  Contained
+                  Github
                 </Button>
               </Grid>
             </Grid>
@@ -104,7 +115,16 @@ function ProjectDetails() {
           alt="green iguana"
         />
       </div>
-      <Footer />
+      <div
+        style={{
+          position: "relative",
+          bottom: "0",
+          left: "0",
+          right: "0",
+        }}
+      >
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -189,13 +189,17 @@ export default function Login() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, background: COLORS.primary2 }}
               >
                 Sign In
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link
+                    style={{ color: COLORS.primary2 }}
+                    href="#"
+                    variant="body2"
+                  >
                     Dont have an account? Register
                   </Link>
                 </Grid>

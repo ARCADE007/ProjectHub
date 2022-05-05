@@ -1,6 +1,5 @@
 import React from "react";
 import Project from "../project/Project";
-// import styles from "../featuredProject/featuredProject.module.css";
 import { COLORS } from "../Values/Colors";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -17,7 +16,6 @@ function OpenProject() {
           paddingTop: "10vh",
           paddingBottom: "20px",
         }}
-        // className={styles.pProjectSection}
       >
         <div
           style={{
@@ -26,15 +24,14 @@ function OpenProject() {
         >
           <h1
             style={{
-              fontSize: "3vw",
+              fontSize: "40px",
               color: COLORS.white,
               borderBottom: "5px solid",
               borderColor: COLORS.primary2,
-              width: "12vw",
+              width: "150px",
               marginLeft: "auto",
               marginRight: "auto",
             }}
-            // className={styles.pHeading}
           >
             Explore
           </h1>
@@ -49,7 +46,14 @@ function OpenProject() {
           </Grid>
         </Container>
       </div>
-      <div>
+      <div
+        style={{
+          position: "relative",
+          bottom: "0",
+          left: "0",
+          right: "0",
+        }}
+      >
         <Footer />
       </div>
     </div>

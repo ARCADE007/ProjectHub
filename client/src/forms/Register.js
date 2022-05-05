@@ -123,6 +123,38 @@ export default function Register() {
           />
           <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <CssTextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                      outlineColor: "white",
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <CssTextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
               <Grid item xs={12}>
                 <CssTextField
                   required
@@ -185,10 +217,21 @@ export default function Register() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, background: COLORS.primary2 }}
             >
-              Update
+              Register
             </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link
+                  style={{ color: COLORS.primary2 }}
+                  href="#"
+                  variant="body2"
+                >
+                  Already have an account? Log In
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Container>

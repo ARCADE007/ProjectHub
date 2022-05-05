@@ -21,12 +21,12 @@ function AchievementSection() {
         <h1
           className={styles.pHeading}
           style={{
-            fontSize: "3vw",
+            fontSize: "30px",
             color: COLORS.white,
             borderBottom: "5px solid",
             borderColor: COLORS.primary2,
-            width: "auto",
-            maxWidth: "37%",
+            width: "360px",
+
             marginLeft: "auto",
             marginRight: "auto",
           }}
