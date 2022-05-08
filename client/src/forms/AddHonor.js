@@ -10,7 +10,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
 import Footer from "../footer/Footer";
-import { InputAdornment } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Topbar from "../topbar/Topbar";
 
@@ -106,9 +105,9 @@ export default function AddHonor() {
                 <CssTextField
                   required
                   fullWidth
-                  id="projectDescription"
-                  label="Project Description"
-                  name="projectDescription"
+                  id="honorDetails"
+                  label="Details"
+                  name="honorDetails"
                   multiline
                   rows={6}
                   InputProps={{
