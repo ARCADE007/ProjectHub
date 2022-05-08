@@ -7,10 +7,10 @@ import ProjectDetails from "./projectDetails/ProjectDetails";
 import UserProfile from "./forms/UserProfile";
 import Login from "./forms/Login";
 import Register from "./forms/Register";
-import AddPost from "./forms/AddPost";
 import AddTechIcon from "./forms/AddTechIcon";
 import AddHonor from "./forms/AddHonor";
 import AddLinks from "./forms/AddLinks";
+import AddProject from "./forms/AddProject";
 
 function App() {
   return (
@@ -34,8 +34,8 @@ function App() {
         <Route path="/AddProfile">
           <UserProfile />
         </Route>
-        <Route path="/AddPost">
-          <AddPost />
+        <Route path="/AddProject">
+          <AddProject />
         </Route>
         <Route path="/Login">
           <Login />

@@ -4,27 +4,32 @@ const UserSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: true,
+      required: false,
+      default: "",
     },
     lastName: {
       type: String,
-      required: true,
+      required: false,
+      default: "",
     },
     skill1: {
       type: String,
-      required: true,
+      required: false,
+      default: "",
     },
     skill2: {
       type: String,
-      required: true,
+      required: false,
     },
     skill3: {
       type: String,
-      required: true,
+      required: false,
+      default: "",
     },
     skill4: {
       type: String,
-      required: true,
+      required: false,
+      default: "",
     },
     email: {
       type: String,
@@ -38,7 +43,8 @@ const UserSchema = new mongoose.Schema(
     },
     aboutYou: {
       type: String,
-      required: true,
+      required: false,
+      default: "",
     },
     password: {
       type: String,

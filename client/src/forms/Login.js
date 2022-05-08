@@ -76,7 +76,6 @@ export default function Login() {
     <div
       style={{
         background: COLORS.primary1,
-        height: "100vh",
       }}
     >
       <CssBaseline />
@@ -208,6 +207,16 @@ export default function Login() {
           </Box>
         </Container>
       </div>
+      <div
+        style={{
+          marginTop: "50px",
+          height: "50px",
+          position: "relative",
+          bottom: "0",
+          left: "0",
+          right: "0",
+        }}
+      ></div>
     </div>
   );
 }

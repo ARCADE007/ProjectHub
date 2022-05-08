@@ -78,7 +78,6 @@ export default function Register() {
     <div
       style={{
         background: COLORS.primary1,
-        height: "100vh",
       }}
     >
       <Container component="main" maxWidth="xs">
@@ -151,6 +150,22 @@ export default function Register() {
                   InputProps={{
                     style: {
                       color: COLORS.white,
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <CssTextField
+                  name="userName"
+                  required
+                  fullWidth
+                  id="userName"
+                  label="User Name"
+                  autoFocus
+                  InputProps={{
+                    style: {
+                      color: COLORS.white,
+                      outlineColor: "white",
                     },
                   }}
                 />
@@ -235,6 +250,15 @@ export default function Register() {
           </Box>
         </Box>
       </Container>
+      <div
+        style={{
+          height: "50px",
+          position: "relative",
+          bottom: "0",
+          left: "0",
+          right: "0",
+        }}
+      ></div>
     </div>
   );
 }

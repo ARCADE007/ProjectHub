@@ -17,7 +17,6 @@ const ProjectSchema = new mongoose.Schema(
     userName: {
       type: String,
       required: true,
-      unique: true,
     },
     photo: {
       type: String,

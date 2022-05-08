@@ -3,24 +3,16 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
 import Footer from "../footer/Footer";
-import { InputAdornment } from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import IconButton from "@mui/material/IconButton";
-import loginImage from "../image/loginImage.svg";
 import { styled } from "@mui/material/styles";
 import Topbar from "../topbar/Topbar";
 
-export default function AddPost() {
+export default function AddProject() {
   const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
       color: COLORS.primary2,
