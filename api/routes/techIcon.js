@@ -30,7 +30,7 @@ router.put("/:id", async (req, res) => {
     } else {
       res.status(401).json("You can update only your tech");
     }
-  } catch (error) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });
@@ -50,7 +50,7 @@ router.delete("/:id", async (req, res) => {
     } else {
       res.status(401).json("You can delete only your tech");
     }
-  } catch (error) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });

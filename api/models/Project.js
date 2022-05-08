@@ -21,6 +21,7 @@ const ProjectSchema = new mongoose.Schema(
     photo: {
       type: String,
       required: false,
+      default: "",
     },
   },
   { timestamps: true }

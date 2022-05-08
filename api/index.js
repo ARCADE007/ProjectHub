@@ -7,6 +7,7 @@ const userRoute = require("./routes/user");
 const honorRoute = require("./routes/honor");
 const linksRoute = require("./routes/links");
 const techRoute = require("./routes/techIcon");
+const projectRoute = require("./routes/project");
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use("/api/user", userRoute);
 app.use("/api/honor", honorRoute);
 app.use("/api/links", linksRoute);
 app.use("/api/tech", techRoute);
+app.use("/api/project", projectRoute);
 
 app.listen(process.env.PORT || 2000, () => {
   console.log("Backend is Running.");
