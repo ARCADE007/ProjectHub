@@ -16,6 +16,9 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route exact path="/">
+          <OpenProject />
+        </Route>
         <Route path="/AddLinks">
           <AddLinks />
         </Route>
@@ -42,9 +45,6 @@ function App() {
         </Route>
         <Route path="/Register">
           <Register />
-        </Route>
-        <Route path="/">
-          <OpenProject />
         </Route>
       </Switch>
     </Router>

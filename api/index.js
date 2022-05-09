@@ -8,9 +8,11 @@ const honorRoute = require("./routes/honor");
 const linksRoute = require("./routes/links");
 const techRoute = require("./routes/techIcon");
 const projectRoute = require("./routes/project");
+const multer = require("multer");
+const cors = require("cors");
 
 dotenv.config();
-
+app.use(cors());
 app.use(express.json());
 
 mongoose
@@ -21,6 +23,20 @@ mongoose
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+
+const upload = multer({ storage: storage });
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  res.status(200).json("File has been uploaded");
+});
+
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/honor", honorRoute);
@@ -28,6 +44,6 @@ app.use("/api/links", linksRoute);
 app.use("/api/tech", techRoute);
 app.use("/api/project", projectRoute);
 
-app.listen(process.env.PORT || 2000, () => {
+app.listen(process.env.PORT || 9898, () => {
   console.log("Backend is Running.");
 });

@@ -70,11 +70,13 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   const userName = req.query.user;
   try {
-    let honors;
+    let projects;
     if (userName) {
-      honors = await Project.find({ userName });
+      projects = await Project.find({ userName });
+    } else {
+      projects = await Project.find();
     }
-    res.status(200).json(honors);
+    res.status(200).json(projects);
   } catch (err) {
     res.status(500).json(err);
   }

@@ -36,7 +36,7 @@ function Footer() {
                 style={{
                   marginTop: "10px",
                 }}
-                class="row"
+                className="row"
               >
                 <Grid container spacing={0}>
                   <Grid item xs>

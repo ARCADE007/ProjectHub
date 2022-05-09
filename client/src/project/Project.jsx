@@ -7,8 +7,9 @@ import Typography from "@mui/material/Typography";
 import projectImage from "../../src/image/projectImage.png";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { COLORS } from "../Values/Colors";
+import { Link } from "react-router-dom";
 
-export default function Project() {
+export default function Project(projects) {
   return (
     <Card
       sx={{
@@ -24,15 +25,17 @@ export default function Project() {
       }}
     >
       <CardActionArea>
-        <CardMedia
-          sx={{
-            aspectRatio: "13/12",
-            objectFit: "fill",
-          }}
-          component="img"
-          src={projectImage}
-          alt="green iguana"
-        />
+        {projects.projects.projectImage && (
+          <CardMedia
+            sx={{
+              aspectRatio: "13/12",
+              objectFit: "fill",
+            }}
+            component="img"
+            src={projects.projects.projectImage}
+            alt="green iguana"
+          />
+        )}
 
         <CardContent
           sx={{
@@ -41,17 +44,17 @@ export default function Project() {
             paddingLeft: "5%",
           }}
         >
+          <link></link>
           <Typography
-            sx={{ color: COLORS.primary1, marginTop: "10%" }}
+            sx={{ marginTop: "10%" }}
             gutterBottom
             variant="h5"
             component="div"
           >
-            Project Name
+            {projects.projects.projectName}
           </Typography>
           <Typography sx={{ color: COLORS.primary1 }} variant="body3">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {projects.projects.projectDescription}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -63,18 +66,23 @@ export default function Project() {
           paddingBottom: "5%",
         }}
       >
-        <Button
-          sx={{
-            bgcolor: COLORS.white,
-            color: COLORS.primary1,
-            borderColor: COLORS.primary1,
-            marginTop: "5%",
-            marginBottom: "5%",
-          }}
-          variant="outlined"
+        <Link
+          style={{ textDecoration: "none", color: COLORS.primary1 }}
+          to={`/projectDetails/${projects.projects._id}`}
         >
-          View Project
-        </Button>
+          <Button
+            sx={{
+              bgcolor: COLORS.white,
+              color: COLORS.primary1,
+              borderColor: COLORS.primary1,
+              marginTop: "5%",
+              marginBottom: "5%",
+            }}
+            variant="outlined"
+          >
+            View Project
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );
