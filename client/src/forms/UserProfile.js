@@ -1,26 +1,67 @@
-import * as React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
+
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
 import Footer from "../footer/Footer";
-import { InputAdornment } from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import IconButton from "@mui/material/IconButton";
-import loginImage from "../image/loginImage.svg";
+import axios from "axios";
 import { styled } from "@mui/material/styles";
 import Topbar from "../topbar/Topbar";
+import { Context } from "../context/Context";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 export default function UserProfile() {
+  const { user, dispatch } = useContext(Context);
+  const [file, setFile] = useState(null);
+  const [open, setOpen] = useState(false);
+  const PF = "http://localhost:9898/images/";
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    dispatch({ type: "UPDATE_START" });
+
+    const dataFull = new FormData(event.currentTarget);
+    const updatedUser = {
+      userId: user._id,
+      firstName: dataFull.get("firstName"),
+      lastName: dataFull.get("lastName"),
+    };
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      updatedUser.profilePic = filename;
+      try {
+        await axios.post("http://localhost:9898/api/upload", data);
+      } catch (error) {}
+    }
+    try {
+      const res = await axios.put(
+        "http://localhost:9898/api/user/" + user._id,
+        updatedUser
+      );
+      dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+      setOpen(true);
+    } catch (error) {
+      dispatch({ type: "UPDATE_ERROR" });
+    }
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
       color: COLORS.primary2,
@@ -44,43 +85,17 @@ export default function UserProfile() {
     },
   });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
-
-  const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
   return (
     <div
       style={{
         background: COLORS.primary1,
       }}
     >
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Updated Successfully
+        </Alert>
+      </Snackbar>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Topbar />
@@ -111,28 +126,58 @@ export default function UserProfile() {
             alignItems: "center",
           }}
         >
-          <Avatar
-            sx={{
-              m: 1,
-              bgcolor: COLORS.primary2,
-              height: "200px",
-              width: "200px",
-            }}
-          >
-            <LockOutlinedIcon />
-          </Avatar>
+          <input
+            accept="image/*"
+            style={{ display: "none" }}
+            id="raised-button-file"
+            multiple
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+          <label htmlFor="raised-button-file">
+            {file ? (
+              <Avatar
+                src={file ? URL.createObjectURL(file) : PF + user.profilePic}
+                sx={{
+                  m: 1,
+                  bgcolor: COLORS.primary2,
+                  height: "200px",
+                  width: "200px",
+                }}
+              >
+                <LockOutlinedIcon />
+              </Avatar>
+            ) : (
+              <Avatar
+                src={user.profilePic}
+                sx={{
+                  m: 1,
+                  bgcolor: COLORS.primary2,
+                  height: "200px",
+                  width: "200px",
+                }}
+              >
+                <LockOutlinedIcon />
+              </Avatar>
+            )}
+          </label>
 
-          <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <CssTextField
-                  autoComplete="given-name"
                   name="firstName"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
                   autoFocus
+                  label="First Name"
+                  // value={firstName}
+                  // onChange={(e) => setFirstName(e.target.value)}
                   InputProps={{
                     style: {
                       color: COLORS.white,
@@ -145,10 +190,10 @@ export default function UserProfile() {
                 <CssTextField
                   required
                   fullWidth
-                  id="lastName"
                   label="Last Name"
                   name="lastName"
-                  autoComplete="family-name"
+                  // value={lastName}
+                  // onChange={(e) => setLastName(e.target.value)}
                   InputProps={{
                     style: {
                       color: COLORS.white,
@@ -156,7 +201,8 @@ export default function UserProfile() {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+
+              {/* <Grid item xs={12} sm={6}>
                 <CssTextField
                   autoComplete="given-name"
                   name="skill1"
@@ -219,30 +265,30 @@ export default function UserProfile() {
                     },
                   }}
                 />
+              </Grid> */}
+              {/* <Grid item xs={12}>
+                <CssTextField
+                  required
+                  fullWidth
+                  label="User Name"
+                  placeholder={user.userName}
+                  // value={user.userName}
+                  // onChange={(e) => setUserName(e.target.value)}
+                  name="userName"
+                />
               </Grid>
               <Grid item xs={12}>
                 <CssTextField
                   required
                   fullWidth
-                  id="email"
                   label="Email Address"
                   name="email"
-                  autoFocus
-                  autoComplete="email"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <p style={{ color: COLORS.white }}> jklu.edu.in </p>
-                      </InputAdornment>
-                    ),
-                    style: {
-                      color: COLORS.white,
-                    },
-                  }}
+                  // value={user.email}
+                  // onChange={(e) => setEmail(e.target.value)}
                 />
-              </Grid>
+              </Grid> */}
 
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <CssTextField
                   required
                   fullWidth
@@ -257,43 +303,18 @@ export default function UserProfile() {
                     },
                   }}
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </Grid> */}
+              {/* <Grid item xs={12}>
                 <CssTextField
                   required
                   fullWidth
+                  // value={password}
                   name="password"
                   label="Password"
-                  // type={values.showPassword ? "text" : "password"}
-                  // value={values.password}
-                  // onChange={handleChange("password")}
-                  autoFocus
+                  // onChange={(e) => setPassword(e.target.value)}
                   id="password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                          sx={{ color: "white" }}
-                        >
-                          {values.showPassword ? (
-                            <VisibilityOff />
-                          ) : (
-                            <Visibility />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-
-                    style: {
-                      color: COLORS.white,
-                    },
-                  }}
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"

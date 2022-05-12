@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Project from "../project/Project";
 import { COLORS } from "../Values/Colors";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Topbar from "../topbar/Topbar";
 import Footer from "../footer/Footer";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 function OpenProject() {
+  const [projects, setProjects] = useState([]);
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const res = await axios.get(
+        "http://localhost:9898/api/project" + search,
+        {
+          withCredentials: false,
+        }
+      );
+
+      setProjects(res.data);
+    };
+    fetchProjects();
+  }, [search]);
+
   return (
     <div>
       <Topbar />
@@ -36,13 +55,15 @@ function OpenProject() {
             Explore
           </h1>
         </div>
-        <Container maxWidth="lg">
-          <Grid container spacing={2}>
-            {[1, 1, 1, 1, 1, 1].map((e) => (
-              <Grid item xs={12} md={6} lg={6} xl={3}>
-                <Project />
-              </Grid>
-            ))}
+        <Container sx={{ minHeight: "45vh" }} maxWidth="lg">
+          <Grid container spacing={4}>
+            {projects.map((p, index) => {
+              return (
+                <Grid item xs={3} md={6} sm={6} lg={6} xl={3}>
+                  <Project key={index} projects={p} />;
+                </Grid>
+              );
+            })}
           </Grid>
         </Container>
       </div>

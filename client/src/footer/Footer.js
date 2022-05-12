@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 import footerImage from "../image/mark.png";
@@ -8,8 +8,14 @@ import instaIcon from "../image/iconInstagram.svg";
 import linkdeinIcon from "../image/iconLinkedin.svg";
 import gitIcon from "../image/iconGithub.svg";
 import mailIcon from "../image/iconMail.svg";
+import { Context } from "../context/Context";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Footer() {
+  const PF = "http://localhost:9898/images/";
+
+  const { user } = useContext(Context);
+
   return (
     <div
       style={{
@@ -36,7 +42,7 @@ function Footer() {
                 style={{
                   marginTop: "10px",
                 }}
-                class="row"
+                className="row"
               >
                 <Grid container spacing={0}>
                   <Grid item xs>
@@ -56,16 +62,21 @@ function Footer() {
             </div>
           </Grid>
           <Grid item xs={6} sm={6} md={6} lg={6}>
-            <Avatar
-              sx={{
-                width: "150px",
-                height: "150px",
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-              alt="Remy Sharp"
-              src={footerImage}
-            />
+            {user ? (
+              <Avatar
+                sx={{
+                  width: "150px",
+                  height: "150px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+                src={PF + user.profilePic}
+              />
+            ) : (
+              <Avatar>
+                <AccountCircleIcon />
+              </Avatar>
+            )}
           </Grid>
         </Grid>
       </Container>

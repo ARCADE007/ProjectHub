@@ -3,19 +3,16 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
-import { InputAdornment } from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import IconButton from "@mui/material/IconButton";
 import loginImage from "../image/loginImage.svg";
 import { styled } from "@mui/material/styles";
+import { Context } from "../context/Context";
+import axios from "axios";
 
 export default function Login() {
   const CssTextField = styled(TextField)({
@@ -41,41 +38,29 @@ export default function Login() {
     },
   });
 
-  const handleSubmit = (event) => {
+  const { dispatch, isFetching } = React.useContext(Context);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+    dispatch({ type: "LOGIN_START" });
+    try {
+      const data1 = new FormData(event.currentTarget);
+      const res = await axios.post("http://localhost:9898/api/auth/login", {
+        userName: data1.get("userName"),
+        password: data1.get("password"),
+      });
 
-  const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+    } catch (error) {
+      dispatch({ type: "LOGIN_FAILURE" });
+    }
   };
 
   return (
     <div
       style={{
         background: COLORS.primary1,
+        minHeight: "100vh",
       }}
     >
       <CssBaseline />
@@ -131,56 +116,20 @@ export default function Login() {
                   <CssTextField
                     required
                     fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <p style={{ color: COLORS.white }}> @jklu.edu.in </p>
-                        </InputAdornment>
-                      ),
-                      style: {
-                        color: COLORS.white,
-                      },
-                    }}
+                    id="userName"
+                    label="User Name"
+                    name="userName"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <CssTextField
                     required
                     fullWidth
+                    type="password"
                     name="password"
                     label="Password"
-                    // type={values.showPassword ? "text" : "password"}
-                    // value={values.password}
-                    // onChange={handleChange("password")}
                     id="password"
                     autoComplete="new-password"
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                            sx={{ color: "white" }}
-                          >
-                            {values.showPassword ? (
-                              <VisibilityOff />
-                            ) : (
-                              <Visibility />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-
-                      style: {
-                        color: COLORS.white,
-                      },
-                    }}
                   />
                 </Grid>
               </Grid>
@@ -196,7 +145,7 @@ export default function Login() {
                 <Grid item>
                   <Link
                     style={{ color: COLORS.primary2 }}
-                    href="#"
+                    href="/Register"
                     variant="body2"
                   >
                     Dont have an account? Register

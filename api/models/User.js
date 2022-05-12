@@ -12,25 +12,25 @@ const UserSchema = new mongoose.Schema(
       required: false,
       default: "",
     },
-    skill1: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    skill2: {
-      type: String,
-      required: false,
-    },
-    skill3: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    skill4: {
-      type: String,
-      required: false,
-      default: "",
-    },
+    // skill1: {
+    //   type: String,
+    //   required: false,
+    //   default: "",
+    // },
+    // skill2: {
+    //   type: String,
+    //   required: false,
+    // },
+    // skill3: {
+    //   type: String,
+    //   required: false,
+    //   default: "",
+    // },
+    // skill4: {
+    //   type: String,
+    //   required: false,
+    //   default: "",
+    // },
     email: {
       type: String,
       required: true,
@@ -41,11 +41,11 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    aboutYou: {
-      type: String,
-      required: false,
-      default: "",
-    },
+    // aboutYou: {
+    //   type: String,
+    //   required: false,
+    //   default: "",
+    // },
     password: {
       type: String,
       required: true,
