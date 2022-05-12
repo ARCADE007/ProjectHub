@@ -4,12 +4,13 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 
-import projectImage from "../../src/image/projectImage.png";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { COLORS } from "../Values/Colors";
 import { Link } from "react-router-dom";
 
 export default function Project(projects) {
+  const PF = "http://localhost:9898/images/";
+
   return (
     <Card
       sx={{
@@ -25,14 +26,14 @@ export default function Project(projects) {
       }}
     >
       <CardActionArea>
-        {projects.projects.projectImage && (
+        {projects.projects.photo && (
           <CardMedia
             sx={{
               aspectRatio: "13/12",
               objectFit: "fill",
             }}
             component="img"
-            src={projects.projects.projectImage}
+            src={PF + projects.projects.photo}
             alt="green iguana"
           />
         )}

@@ -56,12 +56,14 @@ function OpenProject() {
           </h1>
         </div>
         <Container sx={{ minHeight: "45vh" }} maxWidth="lg">
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6} lg={6} xl={3}>
-              {projects.map((p, index) => {
-                return <Project key={index} projects={p} />;
-              })}
-            </Grid>
+          <Grid container spacing={4}>
+            {projects.map((p, index) => {
+              return (
+                <Grid item xs={3} md={6} sm={6} lg={6} xl={3}>
+                  <Project key={index} projects={p} />;
+                </Grid>
+              );
+            })}
           </Grid>
         </Container>
       </div>

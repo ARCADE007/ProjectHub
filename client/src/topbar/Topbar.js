@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,20 +11,39 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { COLORS } from "../Values/Colors";
 import "./topbar.module.css";
-import profileImage from "../image/mark.png";
+import { Link } from "react-router-dom";
+import { Context } from "../context/Context";
 
-const pages = ["About Me", "Tech Stack", "Achievements", "Projects", "Contact"];
+// const pages = ["About Me", "Tech Stack", "Achievements", "Projects", "Contact"];
+const pages = [""];
+
 const settings = [
-  "Profile",
-  "Add Project",
-  "Add Achievement",
-  "Add Tech",
-  "Logout",
+  // { setting: "Profile", link: "/Profile" },
+  { setting: "Explore", link: "/" },
+  { setting: "Add Project", link: "/AddProject" },
+  // { setting: "Add Achievement", link: "/AddHonor" },
+  // { setting: "Add Tech", link: "/AddTechIcon" },
+  { setting: "Settings", link: "/AddProfile" },
+  { setting: "Logout", link: "/" },
+];
+const settings2 = [
+  { setting: "Login", link: "/Login" },
+  { setting: "Register", link: "/Register" },
 ];
 
 const Topbar = () => {
+  const PF = "http://localhost:9898/images/";
+
+  const { user, dispatch } = useContext(Context);
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    window.location.replace("/");
+  };
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -64,7 +83,7 @@ const Topbar = () => {
               fontWeight: "bold",
             }}
           >
-            Priya Kaushik
+            {!user ? "Project Hub" : user.firstName + " " + user.lastName}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -109,7 +128,7 @@ const Topbar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            LOGO
+            {!user ? "Project Hub" : user.firstName + " " + user.lastName}
           </Typography>
           <Box sx={{ display: { xs: "none", md: "flex" }, ml: "auto" }}>
             {pages.map((page) => (
@@ -132,7 +151,13 @@ const Topbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={profileImage} />
+                {user ? (
+                  <Avatar src={PF + user.profilePic} />
+                ) : (
+                  <Avatar>
+                    <AccountCircleIcon />
+                  </Avatar>
+                )}
               </IconButton>
             </Tooltip>
             <Menu
@@ -151,11 +176,49 @@ const Topbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              {settings.map((s, index) => {
+                if (s.setting === "Logout") {
+                  if (!user) {
+                    return;
+                  }
+                  return (
+                    <MenuItem key={index} onClick={handleLogout}>
+                      <Typography textAlign="center">{s.setting}</Typography>
+                    </MenuItem>
+                  );
+                } else {
+                  return (
+                    <MenuItem key={index} onClick={handleCloseUserMenu}>
+                      <Link
+                        to={s.link}
+                        style={{
+                          textDecoration: "none",
+                          color: COLORS.primary1,
+                        }}
+                      >
+                        <Typography textAlign="center">{s.setting}</Typography>
+                      </Link>
+                    </MenuItem>
+                  );
+                }
+              })}
+              {settings2.map((s, index) => {
+                if (!user && "Login") {
+                  return (
+                    <MenuItem key={index} onClick={handleCloseUserMenu}>
+                      <Link
+                        to={s.link}
+                        style={{
+                          textDecoration: "none",
+                          color: COLORS.primary1,
+                        }}
+                      >
+                        <Typography textAlign="center">{s.setting}</Typography>
+                      </Link>
+                    </MenuItem>
+                  );
+                }
+              })}
             </Menu>
           </Box>
         </Toolbar>

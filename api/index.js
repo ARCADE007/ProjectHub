@@ -10,10 +10,12 @@ const techRoute = require("./routes/techIcon");
 const projectRoute = require("./routes/project");
 const multer = require("multer");
 const cors = require("cors");
+const path = require("path");
 
 dotenv.config();
 app.use(cors());
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -27,6 +29,7 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "images");
   },
+
   filename: (req, file, cb) => {
     cb(null, req.body.name);
   },

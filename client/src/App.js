@@ -1,6 +1,6 @@
 import OpenProject from "./openProject/OpenProject";
-
-import React from "react";
+import { Context } from "./context/Context";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Profile from "./ProfilePage/Profile";
 import ProjectDetails from "./projectDetails/ProjectDetails";
@@ -13,39 +13,30 @@ import AddLinks from "./forms/AddLinks";
 import AddProject from "./forms/AddProject";
 
 function App() {
+  const { user } = useContext(Context);
   return (
     <Router>
       <Switch>
         <Route exact path="/">
           <OpenProject />
         </Route>
-        <Route path="/AddLinks">
-          <AddLinks />
-        </Route>
-        <Route path="/AddHonor">
-          <AddHonor />
-        </Route>
-        <Route path="/AddTechIcon">
-          <AddTechIcon />
-        </Route>
-        <Route path="/Profile">
-          <Profile />
-        </Route>
-        <Route path="/ProjectDetails">
-          <ProjectDetails />
+        {/* <Route path="/AddLinks">{!user ? <OpenProject /> : <AddLinks />}</Route>
+        <Route path="/AddHonor">{!user ? <OpenProject /> : <AddHonor />}</Route> */}
+        {/* <Route path="/AddTechIcon">
+          {!user ? <OpenProject /> : <AddTechIcon />}
+        </Route> */}
+        {/* <Route path="/Profile">{!user ? <OpenProject /> : <Profile />}</Route> */}
+        <Route path="/ProjectDetails/:projectId">
+          {!user ? <OpenProject /> : <ProjectDetails />}
         </Route>
         <Route path="/AddProfile">
-          <UserProfile />
+          {!user ? <OpenProject /> : <UserProfile />}
         </Route>
         <Route path="/AddProject">
-          <AddProject />
+          {!user ? <OpenProject /> : <AddProject />}
         </Route>
-        <Route path="/Login">
-          <Login />
-        </Route>
-        <Route path="/Register">
-          <Register />
-        </Route>
+        <Route path="/Login">{user ? <OpenProject /> : <Login />}</Route>
+        <Route path="/Register">{user ? <OpenProject /> : <Register />}</Route>
       </Switch>
     </Router>
   );

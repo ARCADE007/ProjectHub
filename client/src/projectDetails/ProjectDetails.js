@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
 import Button from "@mui/material/Button";
@@ -9,20 +9,35 @@ import Footer from "../footer/Footer";
 import Topbar from "../topbar/Topbar";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Context } from "../context/Context";
 
 function ProjectDetails() {
+  const PF = "http://localhost:9898/images/";
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [projects, setProjects] = useState({});
+  const { user } = useContext(Context);
 
   useEffect(() => {
     const getProject = async () => {
       const res = await axios.get("http://localhost:9898/api/project/" + path);
 
       setProjects(res.data);
+      console.log(res.data);
     };
     getProject();
   }, [path]);
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:9898/api/project/${projects._id}`, {
+        data: { userName: user.userName },
+      });
+      window.location.replace("/");
+    } catch (error) {}
+  };
 
   return (
     <div>
@@ -105,12 +120,25 @@ function ProjectDetails() {
                   }}
                   variant="contained"
                 >
-                  Github
+                  {console.log(projects.githubLink)}
+                  <a
+                    style={{ textDecoration: "none", color: COLORS.white }}
+                    href={projects.githubLink}
+                  >
+                    Github
+                  </a>
                 </Button>
               </Grid>
             </Grid>
           </div>
         </Container>
+        {projects.userName === user?.userName && (
+          <Grid textAlign="right" xs={6}>
+            <Button onClick={handleDelete}>
+              <DeleteIcon sx={{ color: COLORS.white }} />
+            </Button>
+          </Grid>
+        )}
       </div>
       <div
         style={{
@@ -125,7 +153,7 @@ function ProjectDetails() {
               objectFit: "fill",
             }}
             component="img"
-            src={projects.photo}
+            src={PF + projects.photo}
             alt="green iguana"
           />
         )}

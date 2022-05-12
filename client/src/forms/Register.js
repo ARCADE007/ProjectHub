@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,21 +11,33 @@ import { COLORS } from "../Values/Colors";
 import { InputAdornment } from "@mui/material";
 import registerImage from "../image/registerImage.svg";
 import { styled } from "@mui/material/styles";
+import { useState } from "react";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 export default function Register() {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [open, setOpen] = useState(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const data = new FormData(event.currentTarget);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+      const res = await axios.post("http://localhost:9898/api/auth/register", {
+        userName: data.get("userName"),
+        email: data.get("email") + "@jklu.edu.in",
+        password: data.get("password"),
+      });
+      res.data && window.location.replace("Login");
+    } catch (error) {
+      setOpen(true);
+    }
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
 
-    const res = await axios.post("http://localhost:9898/api/auth/register", {
-      userName,
-      email,
-      password,
-    });
-    console.log(res);
+    setOpen(false);
   };
 
   const CssTextField = styled(TextField)({
@@ -59,6 +70,12 @@ export default function Register() {
         minHeight: "100vh",
       }}
     >
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          Error while registering!
+        </Alert>
+      </Snackbar>
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div
@@ -111,7 +128,6 @@ export default function Register() {
                   name="userName"
                   required
                   fullWidth
-                  // value={userName}
                   id="userName"
                   label="User Name"
                   InputProps={{
@@ -120,14 +136,12 @@ export default function Register() {
                       outlineColor: "white",
                     },
                   }}
-                  // onChange={(e) => setUserName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <CssTextField
                   required
                   fullWidth
-                  // value={email}
                   id="email"
                   label="Email Address"
                   name="email"
@@ -141,19 +155,16 @@ export default function Register() {
                       color: COLORS.white,
                     },
                   }}
-                  // onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <CssTextField
                   required
                   fullWidth
-                  // value={password}
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
-                  // onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -169,7 +180,7 @@ export default function Register() {
               <Grid item>
                 <Link
                   style={{ color: COLORS.primary2 }}
-                  href="#"
+                  href="/Login"
                   variant="body2"
                 >
                   Already have an account? Log In
