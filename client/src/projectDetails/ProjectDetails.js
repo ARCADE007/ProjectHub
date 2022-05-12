@@ -1,15 +1,44 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import CardMedia from "@mui/material/CardMedia";
-import projectImage from "../../src/image/projectImage.png";
 import { CssBaseline } from "@mui/material";
 import Footer from "../footer/Footer";
 import Topbar from "../topbar/Topbar";
+import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Context } from "../context/Context";
 
 function ProjectDetails() {
+  const PF = "http://localhost:9898/images/";
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
+  const [projects, setProjects] = useState({});
+  const { user } = useContext(Context);
+
+  useEffect(() => {
+    const getProject = async () => {
+      const res = await axios.get("http://localhost:9898/api/project/" + path);
+
+      setProjects(res.data);
+      console.log(res.data);
+    };
+    getProject();
+  }, [path]);
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:9898/api/project/${projects._id}`, {
+        data: { userName: user.userName },
+      });
+      window.location.replace("/");
+    } catch (error) {}
+  };
+
   return (
     <div>
       <CssBaseline />
@@ -26,20 +55,17 @@ function ProjectDetails() {
           <div
             style={{
               paddingTop: "10vh",
+
+              textAlign: "center",
             }}
           >
             <h1
               style={{
                 fontSize: "40px",
                 color: COLORS.white,
-                borderBottom: "5px solid",
-                borderColor: COLORS.primary2,
-                width: "280px",
-                marginLeft: "auto",
-                marginRight: "auto",
               }}
             >
-              Project Name
+              {projects.projectName}
             </h1>
           </div>
           <div>
@@ -51,10 +77,7 @@ function ProjectDetails() {
                 paddingLeft: "5vw",
               }}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.{" "}
+              {projects.projectDescription}
             </p>
           </div>
           <div
@@ -80,7 +103,12 @@ function ProjectDetails() {
                   }}
                   variant="contained"
                 >
-                  View Profile
+                  <Link
+                    style={{ textDecoration: "none", color: COLORS.white }}
+                    to={`/?user=${projects.userName}`}
+                  >
+                    {projects.userName}
+                  </Link>
                 </Button>
               </Grid>
               <Grid textAlign="center" item xs={6}>
@@ -92,12 +120,25 @@ function ProjectDetails() {
                   }}
                   variant="contained"
                 >
-                  Github
+                  {console.log(projects.githubLink)}
+                  <a
+                    style={{ textDecoration: "none", color: COLORS.white }}
+                    href={projects.githubLink}
+                  >
+                    Github
+                  </a>
                 </Button>
               </Grid>
             </Grid>
           </div>
         </Container>
+        {projects.userName === user?.userName && (
+          <Grid textAlign="right" xs={6}>
+            <Button onClick={handleDelete}>
+              <DeleteIcon sx={{ color: COLORS.white }} />
+            </Button>
+          </Grid>
+        )}
       </div>
       <div
         style={{
@@ -105,15 +146,17 @@ function ProjectDetails() {
           background: COLORS.primary1,
         }}
       >
-        <CardMedia
-          sx={{
-            aspectRatio: "7/5",
-            objectFit: "fill",
-          }}
-          component="img"
-          src={projectImage}
-          alt="green iguana"
-        />
+        {projects.photo && (
+          <CardMedia
+            sx={{
+              aspectRatio: "7/5",
+              objectFit: "fill",
+            }}
+            component="img"
+            src={PF + projects.photo}
+            alt="green iguana"
+          />
+        )}
       </div>
       <div
         style={{

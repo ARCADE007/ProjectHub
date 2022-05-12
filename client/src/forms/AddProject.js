@@ -1,18 +1,53 @@
-import * as React from "react";
+import React, { useContext, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import axios from "axios";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { COLORS } from "../Values/Colors";
+
 import Footer from "../footer/Footer";
 import { styled } from "@mui/material/styles";
 import Topbar from "../topbar/Topbar";
+import { Context } from "../context/Context";
 
 export default function AddProject() {
+  const [file, setFile] = useState(null);
+  const { user } = useContext(Context);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const dataFull = new FormData(event.currentTarget);
+    const newProject = {
+      userName: user.userName,
+      projectName: dataFull.get("projectName"),
+      projectDescription: dataFull.get("projectDescription"),
+      githubLink: dataFull.get("githubLink"),
+    };
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      newProject.photo = filename;
+      try {
+        await axios.post("http://localhost:9898/api/upload", data);
+      } catch (error) {}
+    }
+    try {
+      const res = await axios.post(
+        "http://localhost:9898/api/project",
+        newProject
+      );
+      window.location.replace("/projectDetails/" + res.data._id);
+    } catch (error) {}
+  };
+
   const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
       color: COLORS.primary2,
@@ -78,23 +113,53 @@ export default function AddProject() {
               item
               xs={12}
             >
-              <Avatar
-                variant="square"
-                sx={{
-                  m: 1,
-                  bgcolor: COLORS.primary2,
-                  height: "20vh",
-                  width: "95%",
-
-                  borderRadius: "5px",
-                }}
-              >
-                <LockOutlinedIcon />
-              </Avatar>
+              <input
+                accept="image/*"
+                style={{ display: "none" }}
+                id="raised-button-file"
+                multiple
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <label htmlFor="raised-button-file">
+                {file ? (
+                  <Avatar
+                    variant="square"
+                    src={URL.createObjectURL(file)}
+                    sx={{
+                      m: 1,
+                      bgcolor: COLORS.primary2,
+                      height: "20vh",
+                      width: "95%",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    <LockOutlinedIcon />
+                  </Avatar>
+                ) : (
+                  <Avatar
+                    variant="square"
+                    sx={{
+                      m: 1,
+                      bgcolor: COLORS.primary2,
+                      height: "20vh",
+                      width: "95%",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    <LockOutlinedIcon />
+                  </Avatar>
+                )}
+              </label>
             </Grid>
           </Container>
 
-          <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <CssTextField
@@ -103,7 +168,6 @@ export default function AddProject() {
                   fullWidth
                   id="projectName"
                   label="Project Name"
-                  autoFocus
                   InputProps={{
                     style: {
                       color: COLORS.white,
@@ -136,7 +200,6 @@ export default function AddProject() {
                   fullWidth
                   id="githubLink"
                   label="Github Link"
-                  autoFocus
                   InputProps={{
                     style: {
                       color: COLORS.white,
